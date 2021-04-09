@@ -7,17 +7,26 @@
 
     <fragment
         android:id="@+id/articleFragment"
-        android:name="com.example.fitnessapp.ArticleFragment"
+        android:name="com.example.fitnessapp.ui.article.ArticleFragment"
         android:label="article_fragment"
-        tools:layout="@layout/article_fragment" />
+        tools:layout="@layout/fragment_article" />
     <fragment
         android:id="@+id/trainFragment"
-        android:name="com.example.fitnessapp.TrainFragment"
+        android:name="com.example.fitnessapp.ui.train.TrainFragment"
         android:label="train_fragment"
-        tools:layout="@layout/train_fragment" />
+        tools:layout="@layout/fragment_train" >
+        <action
+            android:id="@+id/action_trainFragment_to_trainPlaceFragment3"
+            app:destination="@id/trainExerciseList" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.fitnessapp.ProfileFragment"
+        android:name="com.example.fitnessapp.ui.profile.ProfileFragment"
         android:label="profile_fragment"
-        tools:layout="@layout/profile_fragment" />
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/trainExerciseList"
+        android:name="com.example.fitnessapp.ui.train.TrainPlaceFragment"
+        android:label="fragment_train_exercise_list"
+        tools:layout="@layout/fragment_train_exercise_list" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.fitnessapp
+package com.example.fitnessapp.ui.profile
 
 import androidx.lifecycle.ViewModel
 
