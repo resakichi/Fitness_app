@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/train_card"
+    app:cardElevation="8dp"
+    android:layout_height="150dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/train_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/train_placeholder"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/train_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginBottom="18dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:textSize="20sp"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:text="Объемные руки" />
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

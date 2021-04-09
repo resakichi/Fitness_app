@@ -1,4 +1,4 @@
-package com.example.fitnessapp
+package com.example.fitnessapp.ui.article
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.fitnessapp.R
 
 class ArticleFragment : Fragment() {
 
@@ -19,7 +20,7 @@ class ArticleFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.article_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_article, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

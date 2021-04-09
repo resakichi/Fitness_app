@@ -1,4 +1,4 @@
-package com.example.fitnessapp
+package com.example.fitnessapp.ui.train
 
 import androidx.lifecycle.ViewModel
 
