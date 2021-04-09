@@ -2,10 +2,13 @@ package com.example.fitnessapp.ui.train
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fitnessapp.R
@@ -13,26 +16,12 @@ import com.example.fitnessapp.adapter.TrainListAdapter
 import com.example.fitnessapp.adapter.TrainListVH
 import com.example.fitnessapp.adapter.VerticalSpaceItemDecoration
 import com.example.fitnessapp.data.Train
+import com.example.fitnessapp.data.network.State
 import com.example.fitnessapp.databinding.FragmentTrainBinding
 
 class TrainFragment : Fragment() {
 
-    private val list: List<Train> = listOf(
-            Train("Объемные руки", R.drawable.train_placeholder),
-            Train("Объемные руки", R.drawable.train_placeholder),
-            Train("Объемные руки", R.drawable.train_placeholder),
-            Train("Объемные руки", R.drawable.train_placeholder),
-            Train("Объемные руки", R.drawable.train_placeholder),
-            Train("Объемные руки", R.drawable.train_placeholder),
-            Train("Объемные руки", R.drawable.train_placeholder),
-            Train("Объемные руки", R.drawable.train_placeholder),
-            Train("Объемные руки", R.drawable.train_placeholder),
-            Train("Объемные руки", R.drawable.train_placeholder),
-            Train("Объемные руки", R.drawable.train_placeholder),
-            Train("Объемные руки", R.drawable.train_placeholder),
-            Train("Объемные руки", R.drawable.train_placeholder),
-            Train("Объемные руки", R.drawable.train_placeholder)
-    )
+
 
     private lateinit var viewModel: TrainViewModel
     private lateinit var binding: FragmentTrainBinding
@@ -46,7 +35,6 @@ class TrainFragment : Fragment() {
         binding.trainRecycler.layoutManager = layoutManager
         val dividerItemDecoration = VerticalSpaceItemDecoration(20)
         binding.trainRecycler.addItemDecoration(dividerItemDecoration)
-        binding.trainRecycler.adapter = TrainListAdapter(list)
 
         return binding.root
     }
@@ -54,7 +42,23 @@ class TrainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(TrainViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel.getTrains()
+
+        dataObserver()
+    }
+
+    fun dataObserver(){
+        viewModel.trainList.observe(viewLifecycleOwner, Observer{
+            when(it){
+                is State.Loading ->
+                    Toast.makeText(requireContext(), "Список загружается", Toast.LENGTH_SHORT)
+                        .show()
+                is State.Success -> {
+                    binding.trainRecycler.adapter = TrainListAdapter(it.data as List<Train>)
+                }
+                is State.Error -> Log.e("lallala", "Error")
+            }
+        })
     }
 
 }
