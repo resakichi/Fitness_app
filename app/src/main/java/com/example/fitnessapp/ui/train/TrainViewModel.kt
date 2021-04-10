@@ -1,5 +1,6 @@
 package com.example.fitnessapp.ui.train
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.fitnessapp.R
 import com.example.fitnessapp.data.Train
 import com.example.fitnessapp.data.network.State
+import com.example.fitnessapp.model.FirebaseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -29,12 +31,10 @@ class TrainViewModel : ViewModel() {
 
     private suspend fun loadData(){
         withContext(Dispatchers.IO){
+            val data = FirebaseModel.get_training()
             val list: MutableList<Train> = mutableListOf()
-            for (i in 0..10){
-                list.add(Train("Объемные руки", R.drawable.train_placeholder))
-            }
-
-            Thread.sleep(2000)
+            Log.d("FirebaseImgae", data.toString())
+            list.add(Train("Объемные руки", R.drawable.train_placeholder))
             _trainList.postValue(State.Success(data = list))
         }
     }
