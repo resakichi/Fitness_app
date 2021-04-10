@@ -47,7 +47,7 @@ class TrainFragment : Fragment() {
         dataObserver()
     }
 
-    fun dataObserver(){
+    private fun dataObserver(){
         viewModel.trainList.observe(viewLifecycleOwner, Observer{
             when(it){
                 is State.Loading ->

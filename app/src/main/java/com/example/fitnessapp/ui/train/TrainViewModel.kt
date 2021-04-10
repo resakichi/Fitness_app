@@ -33,8 +33,7 @@ class TrainViewModel : ViewModel() {
         withContext(Dispatchers.IO){
             val data = FirebaseModel.get_training()
             val list: MutableList<Train> = mutableListOf()
-            Log.d("FirebaseImgae", data.toString())
-            list.add(Train("Объемные руки", R.drawable.train_placeholder))
+
             _trainList.postValue(State.Success(data = list))
         }
     }
