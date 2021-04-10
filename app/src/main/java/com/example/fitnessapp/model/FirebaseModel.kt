@@ -1,8 +1,14 @@
 package com.example.fitnessapp.model
 
 import android.util.Log
+import com.example.fitnessapp.data.Exercises
 import com.example.fitnessapp.data.User
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.Source
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -26,30 +32,48 @@ class FirebaseModel {
                     }
         }
 
-        fun get_training(): MutableList<MutableCollection<Any>> {
-            val result_list: MutableList<MutableCollection<Any>> = mutableListOf()
-
-            try {
-                val docRef = database.collection("Exercises").get().getResult()
-                Log.d(TAG, docRef.toString())
-            }catch (e: Exception){
-                Log.d(TAG, "Error getting documents: ${e}")
-            }
-            return result_list
-
-            /*
-            val docRef = database.collection("Exercises")
-                    .get().addOnSuccessListener { result ->
-                        for (document in result) {
-                            Log.d(TAG, "${document.id} => ${document.data}")
-                            result_list.add(document.data.values)
+        fun get_training():MutableList<Exercises> {
+            val result_list: MutableList<Exercises> = mutableListOf()
+            val source = Source.CACHE
+            val docRef = database.collection("Exercises").get(source)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result!!.documents!!) {
+                                Log.d(TAG, "Cached document data: ${document.getField<Int>("apporoach")}")
+                                val exercise = Exercises(
+                                    title = document.getField<String>("name")!!,
+                                    repetition = document.getField<Int>("repetitions")!!,
+                                    apporoach = document.getField<Int>("apporoach")!!,
+                                    image = document.getField<String>("image")!!,
+                                    rec_weight = document.getField<Int>("rec_weight")!!
+                                )
+                                result_list.add(exercise)
+                            }
+                        } else {
+                            Log.d(TAG, "Cached get failed: ", task.exception)
                         }
                     }
-                    .addOnFailureListener { exception ->
-                        Log.d(TAG, "Error getting documents: ", exception)
+            return result_list
+        }
+
+        fun list_training(): MutableList<Exercises> {
+            var exercises_list:MutableList<Exercises> = mutableListOf()
+            var get_data = object : ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    exercises_list.clear()
+                    if (snapshot!!.exists()){
+                        for (data in snapshot.children){
+                            val exercises = data.getValue(Exercises::class.java)
+                            exercises_list.add(exercises!!)
+                        }
                     }
-            Log.e(TAG + "result", "${result_list.toString()}")
-            return result_list*/
+                }
+            }
+            return exercises_list
         }
 
         fun get_image(image: String){

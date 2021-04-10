@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
+import com.bumptech.glide.Glide
 import com.example.fitnessapp.R
 import com.example.fitnessapp.data.Train
 
@@ -27,7 +28,11 @@ class TrainListAdapter (private val trains: List<Train>): RecyclerView.Adapter<T
 
     override fun onBindViewHolder(holder: TrainListVH, position: Int) {
         holder.title?.text = trains[position].title
-        holder.image?.setImageDrawable( holder.itemView.resources.getDrawable(trains[position].image))
+        //holder.image?.setImageDrawable( holder.itemView.resources.getDrawable(trains[position].image))
+        Glide
+            .with(holder.itemView.getContext())
+            .load(trains[position].image)
+            .into(holder.image!!)
 
         holder.card?.setOnClickListener {
             val bundle = Bundle()
