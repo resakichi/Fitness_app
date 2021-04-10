@@ -34,7 +34,7 @@ class TrainViewModel : ViewModel() {
                 list.add(Train("Объемные руки", R.drawable.train_placeholder))
             }
 
-            Thread.sleep(2000)
+            Thread.sleep(3000)
             _trainList.postValue(State.Success(data = list))
         }
     }
