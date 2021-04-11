@@ -22,43 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true">
-            <EditText
-                android:id="@+id/login_edit"
-                android:layout_width="500px"
-                android:layout_height="120px"
-                android:hint="login"
-                android:textAlignment="center"/>
-            <EditText
-                android:id="@+id/password_edit"
-                android:layout_width="500px"
-                android:layout_height="120px"
-                android:hint="password"
-                android:textAlignment="center"/>
-            <EditText
-                android:id="@+id/weight_edit"
-                android:layout_width="500px"
-                android:layout_height="120px"
-                android:hint="weight"
-                android:textAlignment="center"/>
-            <EditText
-                android:id="@+id/height_edit"
-                android:layout_width="500px"
-                android:layout_height="120px"
-                android:hint="height"
-                android:textAlignment="center"/>
-            <EditText
-                android:id="@+id/age_edit"
-                android:layout_width="500px"
-                android:layout_height="120px"
-                android:hint="age"
-                android:textAlignment="center"/>
-            <Button
-                android:id="@+id/register_btn"
-                android:layout_marginTop="20dp"
-                android:layout_width="500px"
-                android:layout_height="120px"
-                android:text="register"
-                android:textAllCaps="false"/>
+
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>
