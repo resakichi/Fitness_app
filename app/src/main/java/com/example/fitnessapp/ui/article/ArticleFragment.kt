@@ -44,15 +44,22 @@ class ArticleFragment : Fragment() {
     fun dataObserver() {
         viewModel.articleList.observe(viewLifecycleOwner, Observer {
             when (it) {
-                is State.Loading -> Toast.makeText(
-                    requireContext(),
-                    "Список загружается",
-                    Toast.LENGTH_SHORT
-                ).show()
+                is State.Loading -> {
+                    binding.content.visibility = View.GONE
+                    binding.progressBar.visibility = View.VISIBLE
+                }
                 is State.Success -> {
+
+                    binding.content.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
                     binding.articleRecyclerView.adapter = ArticleListAdapter(it.data as List<Article>)
                 }
-                is State.Error -> Log.e("lalala", "Article loading error occurred")
+                is State.Error -> {
+                    Log.e("lalala", "Article loading error occurred")
+
+                    binding.errorMessage.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                }
             }
         })
     }

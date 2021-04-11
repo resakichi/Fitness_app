@@ -2,6 +2,7 @@ package com.example.fitnessapp.adapter
 
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +13,13 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.example.fitnessapp.R
+import com.example.fitnessapp.data.Exercises
 import com.example.fitnessapp.data.Train
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
+import java.lang.Exception
 
-class TrainListAdapter (private val trains: List<Train>): RecyclerView.Adapter<TrainListVH>() {
+class TrainListAdapter (private val exercises: List<Train>): RecyclerView.Adapter<TrainListVH>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrainListVH {
         val itemView =
                 LayoutInflater.from(parent.context)
@@ -22,16 +27,20 @@ class TrainListAdapter (private val trains: List<Train>): RecyclerView.Adapter<T
         return TrainListVH(itemView)
     }
 
-    override fun getItemCount(): Int  = trains.size
+    override fun getItemCount(): Int  = exercises.size
 
 
     override fun onBindViewHolder(holder: TrainListVH, position: Int) {
-        holder.title?.text = trains[position].title
-        holder.image?.setImageDrawable( holder.itemView.resources.getDrawable(trains[position].image))
+        holder.title?.text = exercises[position].name
+
+        Picasso.get()
+            .load(exercises[position].image)
+            .into(holder.image)
 
         holder.card?.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("category", "hands")
+            bundle.putString("id", exercises[position].id)
+            bundle.putString("name", exercises[position].name)
             holder.itemView.findNavController().navigate(R.id.trainExerciseList, bundle)
         }
     }

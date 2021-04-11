@@ -1,4 +1,4 @@
-package com.example.fitnessapp.ui.train
+package com.example.fitnessapp.ui.train.main_fragment
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,14 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fitnessapp.R
 import com.example.fitnessapp.adapter.TrainListAdapter
-import com.example.fitnessapp.adapter.TrainListVH
 import com.example.fitnessapp.adapter.VerticalSpaceItemDecoration
+import com.example.fitnessapp.data.Exercises
 import com.example.fitnessapp.data.Train
 import com.example.fitnessapp.data.network.State
 import com.example.fitnessapp.databinding.FragmentTrainBinding
@@ -50,13 +47,20 @@ class TrainFragment : Fragment() {
     private fun dataObserver(){
         viewModel.trainList.observe(viewLifecycleOwner, Observer{
             when(it){
-                is State.Loading ->
-                    Toast.makeText(requireContext(), "Список загружается", Toast.LENGTH_SHORT)
-                        .show()
+                is State.Loading ->{
+                    binding.trainContent.visibility = View.GONE
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+
                 is State.Success -> {
+                    binding.trainContent.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
                     binding.trainRecycler.adapter = TrainListAdapter(it.data as List<Train>)
                 }
-                is State.Error -> Log.e("lallala", "Error")
+                is State.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.errorMessage.visibility = View.VISIBLE
+                }
             }
         })
     }

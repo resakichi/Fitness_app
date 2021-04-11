@@ -37,7 +37,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
 
-                android:text="@string/example"
+                tools:text="@string/example"
                 android:textColor="@android:color/holo_orange_dark"
                 android:textSize="10sp"
                 tools:ignore="SmallSp" />
@@ -49,7 +49,7 @@
                 android:layout_below="@+id/article_category"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="4dp"
-                android:text="@string/example"
+                tools:text="@string/example"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -60,7 +60,7 @@
                 android:layout_above="@+id/read_btn"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="8dp"
-                android:text="@string/example"
+                tools:text="@string/example"
                 android:textSize="12sp" />
 
             <Button
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:text="Read"
+                android:text="@string/read"
                 android:textColor="@color/black"
                 android:drawableEnd="@drawable/ic_next"
                 android:textAllCaps="false"

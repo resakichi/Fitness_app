@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/trainFragment"
-        android:name="com.example.fitnessapp.ui.train.TrainFragment"
+        android:name="com.example.fitnessapp.ui.train.main_fragment.TrainFragment"
         android:label="train_fragment"
         tools:layout="@layout/fragment_train" >
         <action
@@ -30,7 +30,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/trainExerciseList"
-        android:name="com.example.fitnessapp.ui.train.TrainPlaceFragment"
+        android:name="com.example.fitnessapp.ui.train.exercises.TrainPlaceFragment"
         android:label="fragment_train_exercise_list"
         tools:layout="@layout/fragment_train_exercise_list" />
     <fragment

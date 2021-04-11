@@ -5,15 +5,18 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.article.ArticleFragment">
+    tools:context=".ui.article.ArticleFragment"
+    android:fitsSystemWindows="true">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_500"
+        app:titleTextAppearance="@style/toolbar"
+        app:title="Статьи"
         />
 
     <RelativeLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -27,5 +30,25 @@
             tools:listitem="@layout/item_article"
             android:layout_marginTop="0dp" />
     </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/error_message"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Ошибка при загрузке"
+        android:textSize="24sp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone"
+        />
 
 </LinearLayout>

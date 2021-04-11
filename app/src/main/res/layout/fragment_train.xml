@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.train.TrainFragment">
+    tools:context=".ui.train.main_fragment.TrainFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         app:titleTextAppearance="@style/toolbar"
         />
 
-    <FrameLayout
+    <FrameLayout android:id="@+id/train_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -25,5 +25,25 @@
             android:layout_height="match_parent"
             tools:listitem="@layout/item_train_list" />
     </FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/error_message"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Ошибка при загрузке"
+        android:textSize="24sp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone"
+        />
 
 </LinearLayout>

@@ -6,5 +6,5 @@ sealed class State<T>(
 ) {
     class Success<T>(data: List<T>) : State<T>(data)
     class Loading<T>() : State<T>()
-    class Error<T>(data: List<T?>? = null, message: String) : State<T>(data, message)
+    class Error<T>( message: String) : State<T>(message=  message)
 }

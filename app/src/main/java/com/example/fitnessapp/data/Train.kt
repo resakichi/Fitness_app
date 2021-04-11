@@ -1,7 +1,7 @@
 package com.example.fitnessapp.data
 
 data class Train (
-     val title: String,
-     val image: Int
-) {
-}
+     val name: String,
+     val image: String,
+     val id: String
+)
