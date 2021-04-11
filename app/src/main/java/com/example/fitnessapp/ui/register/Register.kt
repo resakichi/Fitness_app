@@ -86,12 +86,12 @@ class Register : Fragment() {
                 }
                 else -> {
                     viewModel.createUser(user_data)
-                    findNavController().navigate(R.id.profileFragment)
+                    findNavController().navigate(R.id.login)
                 }
             }
         }
         requireView().findViewById<TextView>(R.id.tv_login_reg).setOnClickListener {
-            findNavController().navigate(R.id.loginFragment)
+            findNavController().navigate(R.id.login)
         }
     }
 

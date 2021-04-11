@@ -39,4 +39,9 @@
         android:name="com.example.fitnessapp.ui.login.login"
         android:label="login_fragment"
         tools:layout="@layout/login_fragment" />
+    <fragment
+        android:id="@+id/register"
+        android:name="com.example.fitnessapp.ui.register.Register"
+        android:label="register_fragment"
+        tools:layout="@layout/register_fragment" />
 </navigation>

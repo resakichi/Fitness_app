@@ -1,5 +1,6 @@
 package com.example.fitnessapp.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -14,7 +15,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.fitnessapp.R
+import com.example.fitnessapp.data.PreferenceHelper.customPreference
+import com.example.fitnessapp.data.PreferenceHelper.password
+import com.example.fitnessapp.data.PreferenceHelper.userEmail
+import com.example.fitnessapp.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
+
+
+val CUSTOM_PERF_NAME = "user_data"
 
 class login : Fragment() {
 
@@ -28,6 +36,13 @@ class login : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val perf = customPreference(requireContext(), CUSTOM_PERF_NAME)
+        if (perf.userEmail != null && perf.password != null){
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            //intent.putExtra("userID", perf.userID)
+            startActivity(intent)
+            requireActivity().finish()
+        }
         return inflater.inflate(R.layout.login_fragment, container, false)
     }
 
@@ -58,11 +73,18 @@ class login : Fragment() {
                 else -> {
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                         if (task.isSuccessful){
-                            val bundle = Bundle()
                             val data = task.result!!.user!!.uid
-                            bundle.putString("userID", data)
-                            Log.d("BUNDLE_PUT", "${data}")
-                            findNavController().navigate(R.id.profileFragment, bundle)
+
+                            val pref = customPreference(requireContext(), CUSTOM_PERF_NAME)
+                            pref.userEmail = email
+                            pref.password = password
+
+                            val intent = Intent(requireContext(), MainActivity::class.java)
+                            intent.putExtra("userID", data)
+                            intent.putExtra("email", email)
+                            intent.putExtra("password", password)
+                            startActivity(intent)
+                            requireActivity().finish()
                         }
                         else{
                             Log.e("LOGIN_Failrue", task.exception!!.message.toString())
@@ -72,7 +94,7 @@ class login : Fragment() {
             }
         }
         requireView().findViewById<TextView>(R.id.tv_register_login).setOnClickListener {
-            findNavController().navigate(R.id.registerFragment)
+            findNavController().navigate(R.id.register)
         }
     }
 
