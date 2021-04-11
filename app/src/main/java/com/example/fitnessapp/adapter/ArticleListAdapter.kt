@@ -1,5 +1,6 @@
 package com.example.fitnessapp.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnessapp.R
 import com.example.fitnessapp.data.Article
+import com.squareup.picasso.Picasso
 
 class ArticleListAdapter (val articles: List<Article>) :
         RecyclerView.Adapter<ArticleViewHolder>(){
@@ -23,13 +25,21 @@ class ArticleListAdapter (val articles: List<Article>) :
     override fun getItemCount(): Int = articles.size
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-        holder.image?.setImageDrawable(holder.itemView.context.getDrawable(articles[position].image))
+
         holder.category?.text = articles[position].category
         holder.title?.text = articles[position].title
-        holder.description?.text = articles[position].description
+        holder.description?.text = articles[position].subtitle
+
+        Picasso.get()
+            .load(articles[position].image)
+            .into(holder.image)
 
         holder.readBtn?.setOnClickListener {
-            holder.itemView.findNavController().navigate(R.id.articleInfoFragment)
+            val bundle = Bundle()
+            bundle.putString("image", articles[position].image)
+            bundle.putString("description", articles[position].description)
+            bundle.putString("title", articles[position].title)
+            holder.itemView.findNavController().navigate(R.id.articleInfoFragment, bundle)
         }
     }
 

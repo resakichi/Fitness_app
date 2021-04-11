@@ -9,14 +9,16 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.fitnessapp.R
 import com.example.fitnessapp.databinding.ActivityMainBinding
+import com.example.fitnessapp.ui.MainActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ProfileFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ProfileFragment()
-    }
+
 
     private lateinit var viewModel: ProfileViewModel
 
@@ -25,11 +27,13 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         //viewModel.get_user_data(userID = userId)
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         val bundle = arguments
         var userID: String = "none"
         if (bundle != null){

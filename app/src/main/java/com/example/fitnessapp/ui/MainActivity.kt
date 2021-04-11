@@ -22,8 +22,6 @@ class MainActivity : AppCompatActivity() {
         //find navcontroller and setup bottomnav
         val navController = findNavController(R.id.nav_host_container)
         binding.bottomNav.setupWithNavController(navController)
-        findNavController(R.id.nav_host_container).navigate(R.id.loginFragment)
-        binding.bottomNav.visibility = View.INVISIBLE
     }
 
 
