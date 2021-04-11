@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
+import com.bumptech.glide.Glide
 import com.example.fitnessapp.R
 import com.example.fitnessapp.data.Exercises
 import com.example.fitnessapp.data.Train

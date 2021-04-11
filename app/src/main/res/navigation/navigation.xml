@@ -46,5 +46,15 @@
         android:id="@+id/exerciseInfoFragment"
         android:name="com.example.fitnessapp.ui.train.exercise_info.ExerciseInfoFragment"
         android:label="fragment_exercise_info"
-        tools:layout="@layout/fragment_exercise_info" />
+        tools:layout="@layout/fragment_train_exercise_list" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.fitnessapp.ui.register.Register"
+        android:label="register_fragment"
+        tools:layout="@layout/register_fragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.fitnessapp.ui.login.login"
+        android:label="login_fragment"
+        tools:layout="@layout/login_fragment" />
 </navigation>
