@@ -1,6 +1,7 @@
 package com.example.fitnessapp.ui.article
 
 import android.os.Bundle
+import android.text.Html
 import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
@@ -34,7 +35,7 @@ class ArticleInfoFragment : Fragment() {
     ): View? {
         binding = FragmentArticleInfoBinding.inflate(inflater, container, false)
 
-        binding.text.text = description
+        binding.text.text = Html.fromHtml(description)
         Picasso.get()
             .load(image)
             .into(binding.image)

@@ -42,7 +42,6 @@ class ArticleViewModel : ViewModel() {
                                 title = document.data.getValue("title") as String,
                                 image = document.data.getValue("image") as String,
                                 category = document.data.getValue("category") as String,
-                                subtitle = document.data.getValue("subtitle") as String,
                                 description = document.data.getValue("description") as String,
                             )
                         )

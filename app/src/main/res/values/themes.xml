@@ -22,7 +22,7 @@
     </style>
 
     <style name="toolbar">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="fontFamily">@font/noto_sans</item>
         <item name="background">@color/white</item>
         <item name="android:textColor">@color/black</item>

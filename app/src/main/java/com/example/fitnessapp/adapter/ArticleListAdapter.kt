@@ -28,7 +28,6 @@ class ArticleListAdapter (val articles: List<Article>) :
 
         holder.category?.text = articles[position].category
         holder.title?.text = articles[position].title
-        holder.description?.text = articles[position].subtitle
 
         Picasso.get()
             .load(articles[position].image)
@@ -51,14 +50,12 @@ class  ArticleViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
     var image: ImageView? = null
     var category: TextView? = null
     var title: TextView? = null
-    var description: TextView? = null
     var readBtn: Button? = null
 
     init {
         image = itemView.findViewById(R.id.article_image)
         category = itemView.findViewById(R.id.article_category)
         title = itemView.findViewById(R.id.article_title)
-        description = itemView.findViewById(R.id.article_description)
         readBtn = itemView.findViewById(R.id.read_btn)
         }
 }
