@@ -3,9 +3,6 @@ package com.example.fitnessapp.model
 import android.util.Log
 import com.example.fitnessapp.data.Exercises
 import com.example.fitnessapp.data.User
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.Source
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.getField
@@ -28,7 +25,7 @@ class FirebaseModel {
                         Log.d(TAG, "DocumentSnapshot added with ID ${documentRefererence.id}")
                     }
                     .addOnFailureListener {e ->
-                        Log.w( TAG, "Error adding document", e)
+                        Log.w( TAG, "Error adding document:", e)
                     }
         }
 
@@ -54,36 +51,6 @@ class FirebaseModel {
                         }
                     }
             return result_list
-        }
-
-        fun list_training(): MutableList<Exercises> {
-            var exercises_list:MutableList<Exercises> = mutableListOf()
-            var get_data = object : ValueEventListener{
-                override fun onCancelled(error: DatabaseError) {
-
-                }
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    exercises_list.clear()
-                    if (snapshot!!.exists()){
-                        for (data in snapshot.children){
-                            val exercises = data.getValue(Exercises::class.java)
-                            exercises_list.add(exercises!!)
-                        }
-                    }
-                }
-            }
-            return exercises_list
-        }
-
-        fun get_image(image: String){
-            var islandRef = storageRef.child("sao.jpg")
-
-            val ONE_MEGABYTE: Long = 1024 * 1024
-            islandRef.getBytes(ONE_MEGABYTE)
-                    .addOnSuccessListener {  }
-                    .addOnFailureListener {  }
-
         }
     }
 }
