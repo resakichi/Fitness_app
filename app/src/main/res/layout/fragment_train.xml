@@ -13,6 +13,9 @@
         app:title="Выберите программу"
         app:titleTextAppearance="@style/toolbar"
         />
+    <View android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/toolbar_dropshadow"/>
 
     <FrameLayout android:id="@+id/train_content"
         android:layout_width="match_parent"

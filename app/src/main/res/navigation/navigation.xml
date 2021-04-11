@@ -32,10 +32,19 @@
         android:id="@+id/trainExerciseList"
         android:name="com.example.fitnessapp.ui.train.exercises.TrainPlaceFragment"
         android:label="fragment_train_exercise_list"
-        tools:layout="@layout/fragment_train_exercise_list" />
+        tools:layout="@layout/fragment_train_exercise_list" >
+        <action
+            android:id="@+id/action_trainExerciseList_to_exerciseInfoFragment"
+            app:destination="@id/exerciseInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/articleInfoFragment"
         android:name="com.example.fitnessapp.ui.article.ArticleInfoFragment"
         android:label="fragment_article_info"
         tools:layout="@layout/fragment_article_info" />
+    <fragment
+        android:id="@+id/exerciseInfoFragment"
+        android:name="com.example.fitnessapp.ui.train.exercise_info.ExerciseInfoFragment"
+        android:label="fragment_exercise_info"
+        tools:layout="@layout/fragment_exercise_info" />
 </navigation>

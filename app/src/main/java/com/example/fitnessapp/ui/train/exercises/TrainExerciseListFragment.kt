@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +35,7 @@ class TrainPlaceFragment : Fragment() {
             id = it.getString("id").toString()
             name = it.getString("name").toString()
         }
+
     }
 
     override fun onCreateView(
@@ -48,8 +50,15 @@ class TrainPlaceFragment : Fragment() {
             DividerItemDecoration(requireContext(), layoutManager.orientation)
         binding.exercisesRecycler.addItemDecoration(dividerItemDecoration)
         binding.exerciseName.text = name
+
+        binding.toolbar.setNavigationIcon(R.drawable.ic_back)
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+
         return binding.root
-    }
+
+        }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -79,6 +88,7 @@ class TrainPlaceFragment : Fragment() {
             }
         })
     }
+
 
 
 }

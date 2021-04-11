@@ -11,7 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:title="Упражнения"
-        android:titleTextAppearance="@style/toolbar"/>
+        android:titleTextAppearance="@style/toolbar"
+        android:elevation="8dp"/>
+    <View android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/toolbar_dropshadow"/>
 
     <LinearLayout
         android:id="@+id/content"

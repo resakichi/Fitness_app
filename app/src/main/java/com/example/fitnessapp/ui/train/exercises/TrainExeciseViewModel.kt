@@ -12,14 +12,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class TrainExerciseViewModel() : ViewModel(){
+class TrainExerciseViewModel() : ViewModel() {
 
     val exerciseList: LiveData<State<Exercises>>
         get() = _exerciseList
     private var _exerciseList: MutableLiveData<State<Exercises>> = MutableLiveData()
 
-    fun getExercises(collectionName: String){
-        if (_exerciseList.value?.data.isNullOrEmpty()){
+    fun getExercises(collectionName: String) {
+        if (_exerciseList.value?.data.isNullOrEmpty()) {
             viewModelScope.launch {
                 loadData(collectionName)
             }
@@ -34,17 +34,20 @@ class TrainExerciseViewModel() : ViewModel(){
 
             val res: MutableList<Exercises> = mutableListOf()
 
-            FirebaseModel.database.collection("Programs").document(documentId).collection("Exercises")
+            FirebaseModel.database.collection("Programs").document(documentId)
+                .collection("Exercises")
                 .get().addOnSuccessListener { result ->
                     for (document in result) {
                         res.add(
                             Exercises(
                                 image = document.data.getValue("image") as String,
-                                repetitions = 0, //document.data.getValue("repetitions") as Long,
-                                apporoach = 0, // document.data.getValue("apporoach") as Long,
-                                rec_weight = 0, // document.data.getValue("rec_weight") as Long,
+                                repeats = document.data.getValue("repeats") as Long,
+                                approaches = document.data.getValue("approaches") as Long,
                                 name = document.data.getValue("name") as String,
-                                id = document.id
+                                exerciseImage = document.data.getValue("exerciseImage") as String,
+                                description = document.data.getValue("description") as String,
+                                rest = document.data.getValue("rest") as String,
+                                id = document.id,
                             )
                         )
                         Log.d("lalala", "${document.id} => ${document.data}")
