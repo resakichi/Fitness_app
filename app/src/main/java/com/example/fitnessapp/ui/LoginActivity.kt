@@ -13,7 +13,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        findNavController(R.id.nav_host_container_login).navigate(R.id.login)
+        findNavController(R.id.nav_host_container_login).navigate(R.id.loginFragment)
         val sharedPref = customPreference(this, APP_PERF_NAME)
         sharedPref.clearValues
     }
